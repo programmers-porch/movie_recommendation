@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Movie Catalog</h2>
+<div class="row">
+  {% for m in movies %}
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ m.title }} <small class="text-muted">({{ m.release_year }})</small></h5>
+        <p class="card-text">{{ m.genres or '' }}</p>
+        <p class="card-text"><small>Avg rating: {{ m.avg_rating or 'NA' }}</small></p>
+        <a href="{{ url_for('main_bp.movie_detail', movie_id=m.movie_id) }}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
