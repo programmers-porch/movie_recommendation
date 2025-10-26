@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Your Recommendations</h3>
+{% if recs %}
+  <div class="row">
+    {% for r in recs %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ r.title or r.movie_id }}</h5>
+            {% if r.score %}
+            <p class="card-text">Score: {{ r.score }}</p>
+            {% endif %}
+            <a class="btn btn-sm btn-primary" href="{{ url_for('main_bp.movie_detail', movie_id=r.movie_id) }}">Details</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No recommendations yet. Rate some movies to get personalized suggestions.</p>
+{% endif %}
+{% endblock %}
